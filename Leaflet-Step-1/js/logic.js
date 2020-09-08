@@ -68,6 +68,8 @@ function createFeatures(earthquakeData) {
 
     );
     createMap(earthquakes);
+
+
 }
 
 //function createFeatures(earthquakeData) {
@@ -84,8 +86,29 @@ function createMap(earthquakes) {
     });
 
     var myMap = L.map("map-id", {
-        center: [39.8283, -98.5795],
-        zoom: 5,
+        center: [28.0339, 1.6596],
+        zoom: 2,
         layers: [darkmap, earthquakes]
     });
+
+    var legend = L.control({ position: "bottomright" });
+
+    legend.onAdd = function (map) {
+        var div = L.DomUtil.create("div", "legend");
+        div.innerHTML += "<h3>Magnitude</h3>";
+        div.innerHTML += '<i style="background: #fee5d9"></i><span>2.5-3.0</span><br>';
+        div.innerHTML += '<i style="background: #fcbba1"></i><span>3.0-3.5</span><br>';
+        div.innerHTML += '<i style="background: #fc9272"></i><span>3.5-4.0</span><br>';
+        div.innerHTML += '<i style="background: #fb6a4a"></i><span>4.0-4.5</span><br>';
+        div.innerHTML += '<i style="background: #de2d26"></i><span>4.5-5.0</span><br>';
+        div.innerHTML += '<i style="background: #a50f15"></i><span>5+</span><br>';
+
+
+
+
+        return div;
+
+    };
+    legend.addTo(myMap);
 }
+
